@@ -1,0 +1,25 @@
+{% extends "based/base.html" %}
+
+{% block content %}
+    <h2>Create Post in {{ blog.title }}</h2>
+
+    <form method="post" enctype="multipart/form-data">
+        {% csrf_token %}
+        {{ form.as_p }} 
+
+        {% if form.errors %}
+            <div class="alert alert-danger">
+                <p>There were some errors with your form:</p>
+                <ul>
+                    {% for field in form %}
+                        {% for error in field.errors %}
+                            <li>{{ error }}</li>
+                        {% endfor %}
+                    {% endfor %}
+                </ul>
+            </div>
+        {% endif %}
+
+        <button type="submit" class="btn btn-primary">Submit</button>
+    </form>
+{% endblock %}

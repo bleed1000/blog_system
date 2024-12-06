@@ -1,0 +1,21 @@
+{% extends "based/base.html" %}
+{% load static %}
+{% block content %}
+    <div class="login-container">
+        <div class="login-box">
+            <h2>Профиль пользователя</h2>
+            <form action="{% url "user:profile_view" %}" method="post">
+                {% csrf_token %}
+                <div class="input-box">
+                    <p>Username</p>
+                    <input type="text" name="username" id="username" value="{{ user.username }}" readonly>
+                </div>
+                <div class="input-box">
+                    <p>Email:</p>
+                    <input type="email" name="email" id="email" value="{{ user.email }}" readonly>
+                </div>
+                <button type="button">Редактировать профиль</button>
+            </form>
+        </div>
+    </div>
+{% endblock content %}

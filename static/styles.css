@@ -1,0 +1,137 @@
+body {  
+    margin-top: 56px;
+    padding: 0;
+    font-family: Arial, sans-serif;
+    background: #f0f0f0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
+
+.login-container {
+    width: 100%;
+    max-width: 400px;
+    padding: 20px;
+    background: #ffffff;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+    border-radius: 10px;
+}
+
+.login-box h2 {
+    margin-bottom: 20px;
+    text-align: center;
+    color: #333;
+}
+
+.input-box {
+    position: relative;
+    margin-bottom: 30px;
+}
+
+.input-box input {
+    width: 100%;
+    padding: 10px;
+    background: #f4f4f4;
+    border: none;
+    outline: none;
+    border-radius: 5px;
+    font-size: 16px;
+}
+
+.input-box label {
+    position: absolute;
+    top: 50%;
+    left: 10px;
+    transform: translateY(-50%);
+    pointer-events: none;
+    transition: 0.5s;
+    color: #666;
+}
+
+.input-box input:focus ~ label,
+.input-box input:valid ~ label {
+    top: -10px;
+    left: 10px;
+    color: #03a9f4;
+    font-size: 12px;
+}
+
+button {
+    width: 100%;
+    padding: 10px;
+    border: none;
+    background: #03a9f4;
+    color: #ffffff;
+    font-size: 18px;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background 0.3s;
+}
+
+button:hover {
+    background: #0288d1;
+}
+
+.blog-container {
+    width: 100%;
+    max-width: 800px;
+    background: #ffffff;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+}
+
+.blog-post {
+    margin-bottom: 30px;
+    margin-top: 70px;
+}
+
+.blog-post h2 {
+    color: #333;
+    margin-bottom: 10px;
+}
+
+.blog-post p {
+    color: #555;
+    line-height: 1.6;
+}
+
+.comments-section {
+    margin-top: 30px;
+}
+
+.comment {
+    background: #f9f9f9;
+    padding: 15px;
+    border-radius: 5px;
+    margin-bottom: 15px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+.comment h4 {
+    margin: 0;
+    color: #03a9f4;
+}
+
+.comment p {
+    margin: 10px 0 0;
+    color: #666;
+}
+
+.add-comment {
+    margin-top: 20px;
+}
+
+
+
+.alert {
+    margin-bottom: 20px; /* Отступ между постами */
+}
+
+
+.posts-container {
+    height: calc(100vh - 56px); /* 100% высоты экрана за вычетом верхней панели (если она есть) */
+    overflow-y: auto; /* Включите вертикальную прокрутку */
+}
+

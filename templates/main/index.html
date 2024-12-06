@@ -1,0 +1,23 @@
+{% extends "based/base.html" %}
+
+{% block content %}
+
+    {% if blogs %}
+        {% for blog in blogs %}
+            <div class="alert alert-success mt-2">
+                <h3>
+                    {% if blog.id  %}
+                        <a href={% url "blog:get_blog" blog.id %}>
+                            {{ blog.title }}
+                        </a>
+                    {% else %}
+                        <span>{{ blog.title }}</span>
+                    {% endif %}
+                </h3>
+            </div>
+        {% endfor %}
+    {% else %}
+        <h3>No blogs</h3>
+    {% endif %}
+
+{% endblock %}

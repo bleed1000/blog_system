@@ -1,0 +1,61 @@
+{% extends "based/base.html" %}
+
+{% block content %}
+        <h2>{{ blog.title }}</h2>
+        <h4>Posts:</h4>
+        {% if posts %}
+            <div class="posts-container">
+                {% for post in posts %}
+                    <div class="alert alert-info mt-2">
+                        <p>{{ post.post_body.text }}</p>
+                        {% if post.post_body.image %}
+                            <img src="{{ post.post_body.image.url }}" alt="Post image" class="img-fluid mt-2">
+                        {% endif %}
+                    </div>
+                    {% if user.is_authenticated %}
+                    <div class="reaction-buttons">
+                        <form method="post" action="{% url 'blog:react_to_post' %}">
+                            {% csrf_token %}
+                            <input type="hidden" name="post_id" value="{{ post.id }}">
+                            <input type="hidden" name="reaction_type" value="like">
+                            <button type="submit" class="btn btn-success">👍 Like ({{ post.total_likes }})</button>
+                        </form>
+                        <form method="post" action="{% url 'blog:react_to_post' %}">
+                            {% csrf_token %}
+                            <input type="hidden" name="post_id" value="{{ post.id }}">
+                            <input type="hidden" name="reaction_type" value="dislike">
+                            <button type="submit" class="btn btn-danger">👎 Dislike ({{ post.total_dislikes }})</button>
+                        </form>
+                    </div>
+                    {% endif %}
+                    <h5>Комментарии:</h5>
+                    {% if post.comments.all %}
+                        <ul>
+                            {% for comment in post.comments.all %}
+                                <li><strong>{{ comment.user.username }}:</strong> {{ comment.text.text }}</li>
+                            {% endfor %}
+                        </ul>
+                    {% else %}
+                        <p>Комментариев пока нет.</p>
+                    {% endif %}
+                    {% if user.is_authenticated %}
+                    <form method='post' class='mt-3'>
+                        {% csrf_token %}
+                        {{ comment_form.text }}
+                        
+                            <input type="hidden" name="post_id" value="{{ post.id }}">
+                            <button type="submit" class="btn btn-primary mt-2">Оставить комментарий</button>
+                        {% endif %}
+                    </form>
+                {% endfor %}
+            </div>    
+        {% else %}
+            <p>No posts in this blog yet.</p>
+        {% endif %}
+        <a href="{% url 'main:index' %}" class="btn btn-primary mt-3">Back to blogs</a>
+        {% if user.is_superuser  %}
+            <a href="{% url 'blog:add_post' blog_id=blog.id %}" class="btn btn-primary mt-3">Создать пост</a>
+        {% endif %}
+{% endblock %}
+
+
